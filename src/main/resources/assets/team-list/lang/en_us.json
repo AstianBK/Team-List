@@ -1,16 +1,16 @@
 {
   "msg.teamlist.team" : "Team ",
-  "msg.teamlist.remove_player" : "was removed",
-  "msg.teamlist.no_remove_player" : "couldn't be removed",
-  "msg.teamlist.no_add_player" : "couldn't be added",
-  "msg.teamlist.add_player" : "was added",
-  "msg.teamlist.no_remove_icon": "icon couldn't be removed",
-  "msg.teamlist.remove_icon" : "icon was removed",
-  "msg.teamlist.change_icon" : "se le cambio el icono",
-  "msg.teamlist.no_change_color" : "no se le pudo cambiar el color ",
-  "msg.teamlist.change_color" : "se le cambio el color ",
-  "msg.teamlist.no_present" : "el existe",
-  "msg.teamlist.team_remove" : "fue removido",
-  "msg.teamlist.team_create" : "fue creado"
+  "msg.teamlist.remove_player" : " has removed player ",
+  "msg.teamlist.no_remove_player" : " :player couldn't be removed",
+  "msg.teamlist.no_add_player" : " :player couldn't be added",
+  "msg.teamlist.add_player" : " has added ",
+  "msg.teamlist.no_remove_icon": " icon couldn't be removed",
+  "msg.teamlist.remove_icon" : " icon was removed",
+  "msg.teamlist.change_icon" : " icon was changed to ",
+  "msg.teamlist.no_change_color" : " color couldn't be changed to ",
+  "msg.teamlist.change_color" : " color was changed to ",
+  "msg.teamlist.no_present" : " doesn't exist",
+  "msg.teamlist.team_remove" : " was deleted",
+  "msg.teamlist.team_create" : " was created"
 
 }

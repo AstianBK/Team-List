@@ -86,7 +86,7 @@ public class TeamListClient implements ClientModInitializer {
 										TeamManager.createTeam(team);
 										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.team_create")));
 									}else {
-										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_present")));
+										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.is_present")));
 									}
 									return 1;
 								}))

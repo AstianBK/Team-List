@@ -86,7 +86,7 @@ public class TeamListClient implements ClientModInitializer {
 										TeamManager.createTeam(team);
 										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.team_create")));
 									}else {
-										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team).append(Text.translatable("msg.teamlist.no_present"))));
+										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_present")));
 									}
 									return 1;
 								}))
@@ -96,8 +96,8 @@ public class TeamListClient implements ClientModInitializer {
 									String team = StringArgumentType.getString(context, "team");
 
 									if(TeamManager.isTeamPresent(team)){
+										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team).withColor(TeamManager.teams.get(team).color)).append(Text.translatable("msg.teamlist.team_remove")));
 										TeamManager.deleteTeam(team);
-										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.team_remove")));
 									}else {
 										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_present")));
 									}
@@ -112,7 +112,7 @@ public class TeamListClient implements ClientModInitializer {
 
 											if(TeamManager.isTeamPresent(team) && TeamManager.isColor(color)){
 												TeamManager.modifyColor(team,color);
-												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.change_color").append(Text.literal(color))),false);
+												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team).withColor(TeamManager.teams.get(team).color)).append(Text.translatable("msg.teamlist.change_color").append(Text.literal(color))),false);
 											}else {
 												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_change_color").append(Text.literal(color))));
 											}
@@ -128,9 +128,9 @@ public class TeamListClient implements ClientModInitializer {
 
 											if(TeamManager.isTeamPresent(team) && TeamManager.isIcon(color)){
 												TeamManager.modifyIcon(team,color);
-												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.change_icon").append(Text.literal(color))));
+												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team).withColor(TeamManager.teams.get(team).color)).append(Text.translatable("msg.teamlist.change_icon").append(Text.literal(color))));
 											}else {
-												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_change_color").append(Text.literal(color))));
+												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_change_icon").append(Text.literal(color))));
 											}
 											return 1;
 										})
@@ -142,7 +142,7 @@ public class TeamListClient implements ClientModInitializer {
 
 									if(TeamManager.isTeamPresent(team)){
 										TeamManager.modifyIcon(team,"team-list:icon_interrogation");
-										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.remove_icon")),false);
+										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team).withColor(TeamManager.teams.get(team).color)).append(Text.translatable("msg.teamlist.remove_icon")),false);
 									}else {
 										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_remove_icon")));
 									}
@@ -157,7 +157,7 @@ public class TeamListClient implements ClientModInitializer {
 
 											if(TeamManager.teams.containsKey(team) && !TeamManager.isPresentPlayer(team,player)){
 												TeamManager.addPlayer(team,player);
-												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.add_player")).append(Text.literal(player)));
+												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team).withColor(TeamManager.teams.get(team).color)).append(Text.translatable("msg.teamlist.add_player")).append(Text.literal(player)));
 											}else {
 												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_add_player")));
 											}
@@ -173,7 +173,7 @@ public class TeamListClient implements ClientModInitializer {
 
 											if(TeamManager.teams.containsKey(team) && TeamManager.isPresentPlayer(team,player)){
 												TeamManager.removePlayer(team,player);
-												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.remove_player")).append(Text.literal(player)));
+												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team).withColor(TeamManager.teams.get(team).color)).append(Text.translatable("msg.teamlist.remove_player")).append(Text.literal(player)));
 											}else {
 												MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_remove_player")).append(Text.literal(player)));
 											}

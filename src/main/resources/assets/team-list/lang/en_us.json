@@ -11,6 +11,7 @@
   "msg.teamlist.change_color" : " color was changed to ",
   "msg.teamlist.no_present" : " doesn't exist",
   "msg.teamlist.team_remove" : " was deleted",
-  "msg.teamlist.team_create" : " was created"
+  "msg.teamlist.team_create" : " was created",
+  "msg.teamlist.no_change_icon" : ""
 
 }

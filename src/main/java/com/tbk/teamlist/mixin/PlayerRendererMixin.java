@@ -3,6 +3,7 @@ package com.tbk.teamlist.mixin;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.tbk.teamlist.TeamList;
 import com.tbk.teamlist.TeamListClient;
+import com.tbk.teamlist.team.ComponentTeam;
 import com.tbk.teamlist.team.TLIconsRegistry;
 import com.tbk.teamlist.team.Team;
 import com.tbk.teamlist.team.TeamManager;
@@ -73,15 +74,18 @@ public class PlayerRendererMixin {
                         if (bl) {
                             textRenderer.draw(text, g, (float)i-15, color, false, matrix4f, vertexConsumerProvider, TextRenderer.TextLayerType.NORMAL, 0, i1);
                         }
-                        matrixStack.scale(0.8F,0.8F,0.8F);
+                        if(!team.icon.getLocation().equals(ComponentTeam.NONE.getLocation())){
+                            matrixStack.scale(0.8F,0.8F,0.8F);
 
-                        drawTexture(team.icon.getLocation(),matrix4f,matrixStack,g-16-textRenderer.getTextHandler().getWidth(text)*0.15F,-23,16,16,vertexConsumerProvider,i1);
+                            drawTexture(team.icon.getLocation(),matrix4f,matrixStack,g-16-textRenderer.getTextHandler().getWidth(text)*0.15F,-23,16,16,vertexConsumerProvider,i1);
+                        }
                     }
 
                     matrixStack.pop();
                 }
             }
         }
+
     }
 
     private static void drawTexture(Identifier identifier,Matrix4f matrix, MatrixStack stack, float x, float y, int width, int height, VertexConsumerProvider consumer, int light) {

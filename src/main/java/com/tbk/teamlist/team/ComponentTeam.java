@@ -5,6 +5,7 @@ import com.tbk.teamlist.TeamList;
 import net.minecraft.util.Identifier;
 
 public class ComponentTeam {
+    public static final ComponentTeam NONE = new ComponentTeam("none","none");
     public String name;
     public String id;
     public ComponentTeam(String name,String id){

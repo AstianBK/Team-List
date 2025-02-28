@@ -16,7 +16,7 @@ public class Team{
         this.name=name;
         this.color=color;
         this.players=new HashSet<>();
-        this.icon = TLIconsRegistry.ICON_INTERROGATION;
+        this.icon = ComponentTeam.NONE;
     }
     public Team(JsonObject object,String name){
         this.name=name;

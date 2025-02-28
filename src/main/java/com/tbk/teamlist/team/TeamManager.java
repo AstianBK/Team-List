@@ -81,6 +81,12 @@ public class TeamManager {
         teams.get(team).icon = TLIconsRegistry.mapIcons.get(icon.split(":")[1]);
         TeamManager.save();
     }
+
+    public static void removeIcon(String team){
+        teams.get(team).icon = ComponentTeam.NONE;
+        TeamManager.save();
+    }
+
     public static void save() {
         try (FileWriter writer = new FileWriter(FILE)) {
             JsonObject json = new JsonObject();

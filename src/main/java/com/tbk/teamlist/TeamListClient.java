@@ -141,7 +141,7 @@ public class TeamListClient implements ClientModInitializer {
 									String team = StringArgumentType.getString(context, "team");
 
 									if(TeamManager.isTeamPresent(team)){
-										TeamManager.modifyIcon(team,"team-list:icon_interrogation");
+										TeamManager.removeIcon(team);
 										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team).withColor(TeamManager.teams.get(team).color)).append(Text.translatable("msg.teamlist.remove_icon")),false);
 									}else {
 										MinecraftClient.getInstance().player.sendMessage(Text.translatable("msg.teamlist.team").append(Text.literal(team)).append(Text.translatable("msg.teamlist.no_remove_icon")));

@@ -1,16 +1,16 @@
 {
-  "msg.teamlist.team" : "",
-  "msg.teamlist.remove_player" : "",
-  "msg.teamlist.no_remove_player" : "",
-  "msg.teamlist.no_add_player" : "",
-  "msg.teamlist.add_player" : "",
-  "msg.teamlist.no_remove_icon": "",
-  "msg.teamlist.remove_icon" : "",
-  "msg.teamlist.change_icon" : "",
-  "msg.teamlist.no_change_color" : "",
-  "msg.teamlist.change_color" : "",
-  "msg.teamlist.no_present" : "",
-  "msg.teamlist.team_remove" : "",
-  "msg.teamlist.team_create" : ""
+  "msg.teamlist.team" : "El equipo ",
+  "msg.teamlist.remove_player" : "se le removio al jugador ",
+  "msg.teamlist.no_remove_player" : "no se le pudo remove al jugador ",
+  "msg.teamlist.no_add_player" : "no se le pudo agregar al jugador",
+  "msg.teamlist.add_player" : "se agrego al jugador ",
+  "msg.teamlist.no_remove_icon": "no se pudo remover el icono ",
+  "msg.teamlist.remove_icon" : "se removio el icono ",
+  "msg.teamlist.change_icon" : "se le cambio el icono",
+  "msg.teamlist.no_change_color" : "no se le pudo cambiar el color ",
+  "msg.teamlist.change_color" : "se le cambio el color ",
+  "msg.teamlist.no_present" : "el existe",
+  "msg.teamlist.team_remove" : "fue removido",
+  "msg.teamlist.team_create" : "fue creado"
 
 }

@@ -90,7 +90,7 @@ public class TeamListClient implements ClientModInitializer {
 									}
 									return 1;
 								}))
-				.then(ClientCommandManager.literal("deleteTeam")
+				).then(ClientCommandManager.literal("deleteTeam")
 						.then(ClientCommandManager.argument("team", StringArgumentType.string()).suggests(TEAMS)
 								.executes(context -> {
 									String team = StringArgumentType.getString(context, "team");
@@ -181,8 +181,6 @@ public class TeamListClient implements ClientModInitializer {
 										}))
 						)
 				)
-
-		)
 		);
 	}
 

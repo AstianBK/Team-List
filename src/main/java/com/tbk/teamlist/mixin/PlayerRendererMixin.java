@@ -87,7 +87,6 @@ public class PlayerRendererMixin {
 
         float minU = 0.0F, maxU = 1.0F;
         float minV = 0.0F, maxV = 1.0F;
-        RenderSystem.; // Asegura que no se generen sombras
 
         vertexConsumer.vertex(matrix, x, y + height, 0).color(255, 255, 255, 255).texture(minU, maxV).overlay(OverlayTexture.DEFAULT_UV).light( 15728880).normal(stack.peek(), 0, 0, -1);
         vertexConsumer.vertex(matrix, x + width, y + height, 0).color(255, 255, 255, 255).texture(maxU, maxV).overlay(OverlayTexture.DEFAULT_UV).light( 15728880).normal(stack.peek(), 0, 0, -1);

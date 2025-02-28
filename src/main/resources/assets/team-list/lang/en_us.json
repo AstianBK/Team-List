@@ -1,0 +1,16 @@
+{
+  "msg.teamlist.team" : "",
+  "msg.teamlist.remove_player" : "",
+  "msg.teamlist.no_remove_player" : "",
+  "msg.teamlist.no_add_player" : "",
+  "msg.teamlist.add_player" : "",
+  "msg.teamlist.no_remove_icon": "",
+  "msg.teamlist.remove_icon" : "",
+  "msg.teamlist.change_icon" : "",
+  "msg.teamlist.no_change_color" : "",
+  "msg.teamlist.change_color" : "",
+  "msg.teamlist.no_present" : "",
+  "msg.teamlist.team_remove" : "",
+  "msg.teamlist.team_create" : ""
+
+}

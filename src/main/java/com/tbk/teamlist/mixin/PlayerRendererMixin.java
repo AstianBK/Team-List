@@ -83,14 +83,15 @@ public class PlayerRendererMixin {
     }
 
     private static void drawTexture(Identifier identifier,Matrix4f matrix, MatrixStack stack, float x, float y, int width, int height, VertexConsumerProvider consumer, int light) {
-        VertexConsumer vertexConsumer = consumer.getBuffer(RenderLayer.getEntityCutout(identifier));
+        VertexConsumer vertexConsumer = consumer.getBuffer(RenderLayer.getEyes(identifier));
 
         float minU = 0.0F, maxU = 1.0F;
         float minV = 0.0F, maxV = 1.0F;
-
+        RenderSystem.disableDepthTest();
         vertexConsumer.vertex(matrix, x, y + height, 0).color(255, 255, 255, 255).texture(minU, maxV).overlay(OverlayTexture.DEFAULT_UV).light( 15728880).normal(stack.peek(), 0, 0, -1);
         vertexConsumer.vertex(matrix, x + width, y + height, 0).color(255, 255, 255, 255).texture(maxU, maxV).overlay(OverlayTexture.DEFAULT_UV).light( 15728880).normal(stack.peek(), 0, 0, -1);
         vertexConsumer.vertex(matrix, x + width, y, 0).color(255, 255, 255, 255).texture(maxU, minV).overlay(OverlayTexture.DEFAULT_UV).light( 15728880).normal(stack.peek(), 0, 0, -1);
         vertexConsumer.vertex(matrix, x, y, 0).color(255, 255, 255, 255).texture(minU, minV).overlay(OverlayTexture.DEFAULT_UV).light( 15728880).normal(stack.peek(), 0, 0, -1);
+        RenderSystem.enableDepthTest();
     }
 }

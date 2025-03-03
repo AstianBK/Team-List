@@ -66,6 +66,7 @@ public class TeamListClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
 		ClientPlayConnectionEvents.JOIN.register((handler, sender, client) -> {
+			TeamManager.loadIconCustom();
 			TeamManager.load();
 		});
 
@@ -150,7 +151,7 @@ public class TeamListClient implements ClientModInitializer {
 								})))
 				.then(ClientCommandManager.literal("addPlayer")
 						.then(ClientCommandManager.argument("team", StringArgumentType.string()).suggests(TEAMS)
-								.then(ClientCommandManager.argument("player", StringArgumentType.string()).suggests(PLAYERS)
+								.then(ClientCommandManager.argument("player", StringArgumentType.greedyString()).suggests(PLAYERS)
 										.executes(context -> {
 											String team = StringArgumentType.getString(context, "team");
 											String player = StringArgumentType.getString(context, "player");
@@ -166,7 +167,7 @@ public class TeamListClient implements ClientModInitializer {
 						)
 				).then(ClientCommandManager.literal("removePlayer")
 						.then(ClientCommandManager.argument("team", StringArgumentType.string()).suggests(TEAMS)
-								.then(ClientCommandManager.argument("player", StringArgumentType.string()).suggests(PLAYERS_TEAMS)
+								.then(ClientCommandManager.argument("player", StringArgumentType.greedyString()).suggests(PLAYERS_TEAMS)
 										.executes(context -> {
 											String team = StringArgumentType.getString(context, "team");
 											String player = StringArgumentType.getString(context, "player");

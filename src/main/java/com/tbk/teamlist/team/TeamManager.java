@@ -2,11 +2,21 @@ package com.tbk.teamlist.team;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.moandjiezana.toml.Toml;
 import com.tbk.teamlist.TeamList;
 import net.fabricmc.api.EnvType;
 import net.fabricmc.api.Environment;
+import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.texture.AbstractTexture;
+import net.minecraft.client.texture.NativeImage;
+import net.minecraft.client.texture.NativeImageBackedTexture;
+import net.minecraft.util.Identifier;
 
+import javax.imageio.ImageIO;
+import java.awt.*;
+import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
@@ -21,6 +31,7 @@ import java.util.stream.Collectors;
 public class TeamManager {
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
     private static final File FILE = new File("config/teamlists_teams.json");
+    private static final File CUSTOM_FILE = new File("world/datapacks/registry_icons.toml");
     public static Map<String,Team> teams = new HashMap<>();
     public TeamManager(){
         teams = new HashMap<>();
@@ -113,6 +124,84 @@ public class TeamManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public static void loadIconCustom() {
+        if (!CUSTOM_FILE.exists()) return;
+
+        try {
+            // Cargar el archivo TOML
+            Toml toml = new Toml().read(CUSTOM_FILE);
+
+            // Obtener la lista de iconos desde el archivo TOML
+            List<String> icons = toml.getList("icons");
+
+            // Iterar sobre los iconos y procesarlos
+            for (String name : icons) {
+                String id = name.split(":")[0];
+                String icon = name.split(":")[1];
+                registerTexture(icon);
+                TLIconsRegistry.register(icon, new ComponentTeam(icon, id));
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static Identifier registerTexture(String name) {
+        BufferedImage image = loadPNG(name);
+        if(image!=null){
+            NativeImage nativeImage = convertToNative(image);
+            AbstractTexture texture = new NativeImageBackedTexture(nativeImage);
+
+            Identifier identifier = Identifier.of(TeamList.MOD_ID, "textures/"+name+"png");
+            MinecraftClient.getInstance().getTextureManager().registerTexture(identifier, texture);
+            return identifier;
+        }
+
+        return null;
+    }
+
+    public static NativeImage convertToNative(BufferedImage image) {
+        int width = image.getWidth();
+        int height = image.getHeight();
+        NativeImage nativeImage = new NativeImage(width, height, true);
+
+        for (int x = 0; x < width; x++) {
+            for (int y = 0; y < height; y++) {
+                int p = image.getRGB(x, y);
+
+                int a = (p >> 24) & 0xFF;
+                int r = (p >> 16) & 0xFF;
+                int g = (p >> 8) & 0xFF;
+                int b = (p) & 0xFF;
+
+                // Reordenar a RGBA
+                int fixedColor = (a << 24) | (b << 16) | (g << 8) | r;
+                nativeImage.setColor(x, y, fixedColor);
+            }
+        }
+
+        return nativeImage;
+    }
+    public static BufferedImage loadPNG(String filename) {
+        File file = new File("world/datapacks/custom/data/team-list/icons/" + filename+".png");
+        if (!file.exists()) {
+            System.out.println("No se encontró el archivo: " + file.getAbsolutePath());
+            return null;
+        }
+
+        try {
+            BufferedImage rawImage = ImageIO.read(file);
+            BufferedImage image = new BufferedImage(rawImage.getWidth(), rawImage.getHeight(), BufferedImage.TYPE_INT_ARGB);
+            Graphics2D g = image.createGraphics();
+            g.drawImage(rawImage, 0, 0, null);
+            g.dispose();
+            return image;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
         }
     }
 
